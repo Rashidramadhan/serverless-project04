@@ -31,10 +31,10 @@ export async function getAllToDo(userId: string): Promise<TodoItem[]> {
         return todo as TodoItem
  }
 
-export async function updateTodo(todoId: string, updateTodoRequest: UpdateTodoRequest) {
-      const item = await updateTodoItem(todoId, updateTodoRequest);
-      console.log(item)
-      updateTodoItem(todoId, updateTodoRequest as TodoUpdate)
+export async function updateTodo(todoId: string, userId: string, updateTodoRequest: UpdateTodoRequest) {
+      // const item = await updateTodoItem(todoId, updateTodoRequest);
+      // console.log(item)
+      await updateTodoItem(todoId, userId, updateTodoRequest as TodoUpdate)
 
 }
 
@@ -44,7 +44,6 @@ export async function deleteTodo(todoId: string, userId: string): Promise<string
     return deleteToDo(todoId, userId)
 
 }
-
 export function getUploaded_Url(todoId: string): Promise<string> {
     return  generateUploadUrl(todoId);
 }

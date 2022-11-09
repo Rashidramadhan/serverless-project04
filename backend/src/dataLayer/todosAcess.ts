@@ -85,27 +85,27 @@ export async function deleteToDo(todoId: string, userId: string): Promise<string
         return " " as string
     }
 
-export async function updateTodoItem(todoId: string, todoUpdate: TodoUpdate) {
-    const result = await docClient
-            .update({
-                TableName: todosTable,
-      Key: {
-        "todoId": todoId
-      },
-      UpdateExpression: 'set #name = :name, #dueDate = :dueDate, #done = :done',
-      ExpressionAttributeNames: {
-        "#name": "name",
-        "#dueDate": "dueDate",
-        "#done": "name"
-      },
-      ExpressionAttributeValues: {
-        ":name": todoUpdate.name,
-        ":dueDate": todoUpdate.dueDate,
-        ":done": todoUpdate.done
-      }
+export async function updateTodoItem(todoId: string, userId: string, todoUpdate: TodoUpdate){
 
-            }).promise()
-    return result
+        await docClient.update( {
+            TableName: todosTable,
+            Key: {
+                todoId,
+                userId
+            },
+            UpdateExpression: "set #name = :name, #dueDate = :dueDate, #done = :done",
+            ExpressionAttributeNames: {
+                "#name": "name",
+                "#dueDate": "dueDate",
+                "#done": "done"
+            },
+            ExpressionAttributeValues: {
+                ":name": todoUpdate.name,
+                ":dueDate": todoUpdate.dueDate,
+                ":done": todoUpdate.done
+            }
+
+        }).promise()
   }
 function createDynamoDBClient() {
   if (process.env.IS_OFFLINE) {
