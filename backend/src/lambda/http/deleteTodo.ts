@@ -1,5 +1,4 @@
 import 'source-map-support/register'
-
 import {APIGatewayProxyEvent, APIGatewayProxyResult, APIGatewayProxyHandler} from 'aws-lambda';
 import { deleteTodo } from "../../businessLogic/todos";
 

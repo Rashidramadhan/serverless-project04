@@ -1,12 +1,8 @@
-import { APIGatewayProxyEvent, APIGatewayProxyResult } from 'aws-lambda'
 import 'source-map-support/register'
+import { APIGatewayProxyEvent, APIGatewayProxyResult } from 'aws-lambda'
 import * as middy from 'middy'
 import { cors } from 'middy/middlewares'
 import { CreateTodoRequest } from '../../requests/CreateTodoRequest'
-// import { getUserId } from '../utils';
-// import { createTodo } from '../../businessLogic/todos'
-// import * as uuid from 'uuid'
-// import {createContext} from "vm";
 import { createTodo } from "../../dataLayer/todosAcess";
 import { todoBuilder } from "../../businessLogic/todos";
 
